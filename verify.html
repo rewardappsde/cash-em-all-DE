@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Checking Availability...</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #0f1115;
+      color: white;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .bg {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(rgba(0,0,0,.7), rgba(0,0,0,.82)),
+      url('bg1.jpg') center/cover no-repeat;
+      filter: blur(3px);
+      transform: scale(1.05);
+    }
+
+    .card {
+      position: relative;
+      z-index: 2;
+      width: 92%;
+      max-width: 400px;
+      background: rgba(20,20,20,.88);
+      border-radius: 24px;
+      border: 1px solid rgba(255,255,255,.08);
+      padding: 28px;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 0 40px rgba(0,0,0,.4);
+    }
+
+    h2 {
+      font-size: 28px;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    .desc {
+      color: #cfcfcf;
+      font-size: 14px;
+      text-align: center;
+      line-height: 1.6;
+      margin-bottom: 28px;
+    }
+
+    .step {
+      margin-bottom: 18px;
+    }
+
+    .label {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+      font-size: 14px;
+      color: #e6e6e6;
+    }
+
+    .bar {
+      width: 100%;
+      height: 10px;
+      background: rgba(255,255,255,.08);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(135deg,#2ecc71,#27ae60);
+      border-radius: 999px;
+      transition: width .4s ease;
+    }
+
+    .success {
+      display: none;
+      text-align: center;
+      margin-top: 24px;
+    }
+
+    .success h3 {
+      color: #59ff9f;
+      margin-bottom: 10px;
+      font-size: 22px;
+    }
+
+    .success p {
+      color: #d0d0d0;
+      font-size: 14px;
+      line-height: 1.5;
+      margin-bottom: 22px;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 16px;
+      border: none;
+      border-radius: 14px;
+      background: linear-gradient(135deg,#2ecc71,#27ae60);
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .footer {
+      margin-top: 18px;
+      text-align: center;
+      font-size: 12px;
+      color: #909090;
+    }
+  </style>
+</head>
+<body>
+
+<div class="bg"></div>
+
+<div class="card">
+
+  <h2>Checking Access</h2>
+
+  <div class="desc">
+    Please wait while we verify compatibility and reward availability for your device.
+  </div>
+
+  <div class="step">
+    <div class="label">
+      <span>Germany Access</span>
+      <span id="t1">0%</span>
+    </div>
+    <div class="bar">
+      <div class="fill" id="b1"></div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="label">
+      <span>Android Compatibility</span>
+      <span id="t2">0%</span>
+    </div>
+    <div class="bar">
+      <div class="fill" id="b2"></div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="label">
+      <span>Reward Availability</span>
+      <span id="t3">0%</span>
+    </div>
+    <div class="bar">
+      <div class="fill" id="b3"></div>
+    </div>
+  </div>
+
+  <div class="success" id="successBox">
+    <h3>Access Available</h3>
+
+    <p>
+      Rewards are currently available for your device and location.
+    </p>
+
+    <button class="btn" onclick="openOffer()">
+      Open Rewards
+    </button>
+  </div>
+
+  <div class="footer">
+    Germany Android availability only.
+  </div>
+
+</div>
+
+<script>
+function animateBar(barId, textId, duration, callback) {
+  let progress = 0;
+  const bar = document.getElementById(barId);
+  const text = document.getElementById(textId);
+
+  const interval = setInterval(() => {
+    progress += 2;
+
+    if(progress > 100) {
+      progress = 100;
+    }
+
+    bar.style.width = progress + '%';
+    text.innerText = progress + '%';
+
+    if(progress >= 100) {
+      clearInterval(interval);
+      if(callback) callback();
+    }
+  }, duration / 50);
+}
+
+animateBar('b1','t1',1200, () => {
+  animateBar('b2','t2',1400, () => {
+    animateBar('b3','t3',1500, () => {
+      document.getElementById('successBox').style.display = 'block';
+    });
+  });
+});
+
+function openOffer() {
+
+  // GANTI LINK DI BAWAH DENGAN LINK CPA KAMU
+  window.location.href = 'https://ridefiles.net/show.php?l=0&u=2525179&id=74404';
+}
+</script>
+
+</body>
+</html>
